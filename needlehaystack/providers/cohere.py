@@ -1,5 +1,5 @@
 import os
-import pkg_resources
+from importlib import resources
 
 from operator import itemgetter
 from typing import Optional

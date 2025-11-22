@@ -4,9 +4,9 @@ from typing import Optional
 from dotenv import load_dotenv
 from jsonargparse import CLI
 
-from . import LLMNeedleHaystackTester, LLMMultiNeedleHaystackTester
-from .evaluators import Evaluator, LangSmithEvaluator, OpenAIEvaluator
-from .providers import Anthropic, ModelProvider, OpenAI, Cohere
+from needlehaystack import LLMNeedleHaystackTester, LLMMultiNeedleHaystackTester
+from needlehaystack.evaluators import Evaluator, LangSmithEvaluator, OpenAIEvaluator
+from needlehaystack.providers import Anthropic, ModelProvider, OpenAI, Cohere
 
 load_dotenv()
 

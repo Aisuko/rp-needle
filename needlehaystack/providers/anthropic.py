@@ -1,5 +1,5 @@
 import os
-import pkg_resources
+from importlib import resources
 
 from operator import itemgetter
 from typing import Optional
@@ -37,12 +37,17 @@ class Anthropic(ModelProvider):
         self.model = AsyncAnthropic(api_key=self.api_key)
         self.tokenizer = AnthropicModel().get_tokenizer()
 
-        resource_path = pkg_resources.resource_filename('needlehaystack', 'providers/Anthropic_prompt.txt')
-
         # Generate the prompt structure for the Anthropic model
         # Replace the following file with the appropriate prompt structure
-        with open(resource_path, 'r') as file:
-            self.prompt_structure = file.read()
+        try:
+            with resources.open_text('needlehaystack.providers', 'Anthropic_prompt.txt') as file:
+                self.prompt_structure = file.read()
+        except FileNotFoundError:
+            # Fallback for development mode
+            import pathlib
+            prompt_file = pathlib.Path(__file__).parent / 'Anthropic_prompt.txt'
+            with open(prompt_file, 'r') as file:
+                self.prompt_structure = file.read()
 
     async def evaluate_model(self, prompt: str) -> str:
         response = await self.model.completions.create(
