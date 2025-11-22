@@ -25,13 +25,13 @@ class OpenAI(ModelProvider):
                                       temperature = 0)
 
     def __init__(self,
-                 model_name: str = "gpt-3.5-turbo-0125",
+                 model_name: str = "gpt-4.1-mini",
                  model_kwargs: dict = DEFAULT_MODEL_KWARGS):
         """
         Initializes the OpenAI model provider with a specific model.
 
         Args:
-            model_name (str): The name of the OpenAI model to use. Defaults to 'gpt-3.5-turbo-0125'.
+            model_name (str): The name of the OpenAI model to use. Defaults to 'gpt-4.1-mini'.
             model_kwargs (dict): Model configuration. Defaults to {max_tokens: 300, temperature: 0}.
         
         Raises:
@@ -44,7 +44,11 @@ class OpenAI(ModelProvider):
         self.model_name = model_name
         self.model_kwargs = model_kwargs
         self.api_key = api_key
-        self.model = AsyncOpenAI(api_key=self.api_key)
+        self.model = AsyncOpenAI(
+            api_key=self.api_key,
+            base_url=os.getenv("BASE_URL")
+            )
+        
         self.tokenizer = tiktoken.encoding_for_model(self.model_name)
     
     async def evaluate_model(self, prompt: str) -> str:

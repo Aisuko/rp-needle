@@ -14,8 +14,8 @@ load_dotenv()
 class CommandArgs():
     provider: str = "openai"
     evaluator: str = "openai"
-    model_name: str = "gpt-3.5-turbo-0125"
-    evaluator_model_name: Optional[str] = "gpt-3.5-turbo-0125"
+    model_name: str = "gpt-4.1-mini"
+    evaluator_model_name: Optional[str] = "gpt-4.1-mini"
     needle: Optional[str] = "\nThe best thing to do in San Francisco is eat a sandwich and sit in Dolores Park on a sunny day.\n"
     haystack_dir: Optional[str] = "PaulGrahamEssays"
     retrieval_question: Optional[str] = "What is the best thing to do in San Francisco?"

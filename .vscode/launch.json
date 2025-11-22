@@ -1,0 +1,85 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug run.py - OpenAI Single Needle",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/needlehaystack/run.py",
+            "args": [
+                "--provider", "openai",
+                "--model_name", "gpt-4.1-mini",
+                "--document_depth_percents", "[50]",
+                "--context_lengths", "[2000]"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "NIAH_MODEL_API_KEY": "${env:NIAH_MODEL_API_KEY}",
+                "NIAH_EVALUATOR_API_KEY": "${env:NIAH_EVALUATOR_API_KEY}"
+            }
+        },
+        {
+            "name": "Debug run.py - Anthropic Single Needle",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/needlehaystack/run.py",
+            "args": [
+                "--provider", "anthropic",
+                "--model_name", "claude-2.1",
+                "--document_depth_percents", "[50]",
+                "--context_lengths", "[2000]"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "NIAH_MODEL_API_KEY": "${env:NIAH_MODEL_API_KEY}",
+                "NIAH_EVALUATOR_API_KEY": "${env:NIAH_EVALUATOR_API_KEY}"
+            }
+        },
+        {
+            "name": "Debug run.py - Multi Needle",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/needlehaystack/run.py",
+            "args": [
+                "--provider", "openai",
+                "--model_name", "gpt-4-0125-preview",
+                "--multi_needle", "True",
+                "--document_depth_percents", "[40]",
+                "--context_lengths", "[4000]",
+                "--needles", "[\"Figs are one of the three most delicious pizza toppings.\", \"Prosciutto is one of the three most delicious pizza toppings.\", \"Goat cheese is one of the three most delicious pizza toppings.\"]"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "NIAH_MODEL_API_KEY": "${env:NIAH_MODEL_API_KEY}",
+                "NIAH_EVALUATOR_API_KEY": "${env:NIAH_EVALUATOR_API_KEY}"
+            }
+        },
+        {
+            "name": "Debug run.py - Custom Parameters",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/needlehaystack/run.py",
+            "args": [
+                "--provider", "openai",
+                "--model_name", "gpt-4.1-mini",
+                "--context_lengths_min", "1000",
+                "--context_lengths_max", "8000",
+                "--context_lengths_num_intervals", "5",
+                "--document_depth_percent_min", "10",
+                "--document_depth_percent_max", "90",
+                "--document_depth_percent_intervals", "5",
+                "--num_concurrent_requests", "1",
+                "--save_results", "True"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "NIAH_MODEL_API_KEY": "${env:NIAH_MODEL_API_KEY}",
+                "NIAH_EVALUATOR_API_KEY": "${env:NIAH_EVALUATOR_API_KEY}"
+            }
+        }
+    ]
+}

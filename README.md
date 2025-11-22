@@ -50,17 +50,17 @@ You can then run the analysis on OpenAI, Anthropic, or Cohere models with the fo
 
 - `provider` - The provider of the model, available options are `openai`, `anthropic`, and `cohere`. Defaults to `openai`
 - `evaluator` - The evaluator, which can either be a `model` or `LangSmith`. See more on `LangSmith` below. If using a `model`, only `openai` is currently supported. Defaults to `openai`.
-- `model_name` - Model name of the language model accessible by the provider. Defaults to `gpt-3.5-turbo-0125`
-- `evaluator_model_name` - Model name of the language model accessible by the evaluator. Defaults to `gpt-3.5-turbo-0125`
+- `model_name` - Model name of the language model accessible by the provider. Defaults to `gpt-4.1-mini`
+- `evaluator_model_name` - Model name of the language model accessible by the evaluator. Defaults to `gpt-4.1-mini`
 
 Additionally, `LLMNeedleHaystackTester` parameters can also be passed as command line arguments, except `model_to_test` and `evaluator`.
 
 Here are some example use cases.
 
-Following command runs the test for openai model `gpt-3.5-turbo-0125` for a single context length of 2000 and single document depth of 50%.
+Following command runs the test for openai model `gpt-4.1-mini` for a single context length of 2000 and single document depth of 50%.
 
 ```zsh
-needlehaystack.run_test --provider openai --model_name "gpt-3.5-turbo-0125" --document_depth_percents "[50]" --context_lengths "[2000]"
+needlehaystack.run_test --provider openai --model_name "gpt-4.1-mini" --document_depth_percents "[50]" --context_lengths "[2000]"
 ```
 
 Following command runs the test for anthropic model `claude-2.1` for a single context length of 2000 and single document depth of 50%.
@@ -118,7 +118,7 @@ The package `needlehaystack` is available for import in your test cases. Develop
 
 Other Parameters:
 
-- `model_name` - The name of the model you'd like to use. Should match the exact value which needs to be passed to the api. Ex: For OpenAI inference and evaluator models it would be `gpt-3.5-turbo-0125`.
+- `model_name` - The name of the model you'd like to use. Should match the exact value which needs to be passed to the api. Ex: For OpenAI inference and evaluator models it would be `gpt-4.1-mini`.
 
 ## Results Visualization
 
