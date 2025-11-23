@@ -14,9 +14,8 @@
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
+            "envFile": "${workspaceFolder}/.env",
             "env": {
-                "NIAH_MODEL_API_KEY": "${env:NIAH_MODEL_API_KEY}",
-                "NIAH_EVALUATOR_API_KEY": "${env:NIAH_EVALUATOR_API_KEY}",
                 "PYTHONPATH": "${workspaceFolder}"
             }
         },
@@ -33,9 +32,8 @@
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
+            "envFile": "${workspaceFolder}/.env",
             "env": {
-                "NIAH_MODEL_API_KEY": "${env:NIAH_MODEL_API_KEY}",
-                "NIAH_EVALUATOR_API_KEY": "${env:NIAH_EVALUATOR_API_KEY}",
                 "PYTHONPATH": "${workspaceFolder}"
             }
         },
@@ -54,9 +52,8 @@
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
+            "envFile": "${workspaceFolder}/.env",
             "env": {
-                "NIAH_MODEL_API_KEY": "${env:NIAH_MODEL_API_KEY}",
-                "NIAH_EVALUATOR_API_KEY": "${env:NIAH_EVALUATOR_API_KEY}",
                 "PYTHONPATH": "${workspaceFolder}"
             }
         },
@@ -79,9 +76,8 @@
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
+            "envFile": "${workspaceFolder}/.env",
             "env": {
-                "NIAH_MODEL_API_KEY": "${env:NIAH_MODEL_API_KEY}",
-                "NIAH_EVALUATOR_API_KEY": "${env:NIAH_EVALUATOR_API_KEY}",
                 "PYTHONPATH": "${workspaceFolder}"
             }
         }
