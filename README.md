@@ -6,7 +6,27 @@ Supported model providers: OpenAI, Anthropic, Cohere
 
 Get the behind the scenes on the [overview video](https://youtu.be/KwRRuiCCdmc).
 
-![GPT-4-128 Context Testing](img/NeedleHaystackCodeSnippet.png)
+Easy to use VScode inside the container environment to launch the OpenAI model testing.
+
+```bash
+(workspace) ➜  LLMTest_NeedleInAHaystack git:(main) ✗  cd /workspaces/LLMTest_NeedleInAHaystack ; /usr/bin/env /workspace/.venv/bin/python /root/.vscode-server/extensions
+/ms-python.debugpy-2025.16.0/bundled/libs/debugpy/adapter/../../debugpy/launcher 46039 -- /workspaces/LLMTest_NeedleInAHaystack/needlehaystack/run.py --provider openai --
+model_name gpt-4.1-mini --document_depth_percents \[50\] --context_lengths \[2000\] 
+/workspace/.venv/lib/python3.10/site-packages/langchain/callbacks/__init__.py:37: LangChainDeprecationWarning: Importing this callback from langchain is deprecated. Importing it from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.callbacks import base`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+Testing single-needle
+
+
+Starting Needle In A Haystack Testing...
+- Model: gpt-4.1-mini
+- Context Lengths: 1, Min: 2000, Max: 2000
+- Document Depths: 1, Min: 50%, Max: 50%
+- Needle: The best thing to do in San Francisco is eat a sandwich and sit in Dolores Park on a sunny day.
+```
 
 ## The Test
 

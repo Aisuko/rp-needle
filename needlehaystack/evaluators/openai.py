@@ -1,9 +1,7 @@
 import os
 
 from .evaluator import Evaluator
-
-from langchain.evaluation import load_evaluator
-from langchain_community.chat_models import ChatOpenAI
+from openai import OpenAI
 
 class OpenAIEvaluator(Evaluator):
     DEFAULT_MODEL_KWARGS: dict = dict(temperature=0)
@@ -40,27 +38,36 @@ class OpenAIEvaluator(Evaluator):
             raise ValueError("NIAH_EVALUATOR_API_KEY must be in env for using openai evaluator.")
 
         self.api_key = api_key
+        base_url = os.getenv('BASE_URL')
         
-        self.evaluator = ChatOpenAI(model=self.model_name,
-                                    openai_api_key=self.api_key,
-                                    **self.model_kwargs)
+        self.client = OpenAI(
+            api_key=self.api_key,
+            base_url=base_url
+        )
 
     def evaluate_response(self, response: str) -> int:
-        evaluator = load_evaluator(
-            "labeled_score_string",
-            criteria=self.CRITERIA,
-            llm=self.evaluator,
-        )
-
-        eval_result = evaluator.evaluate_strings(
-            # The models response
-            prediction=response,
-
-            # The actual answer
-            reference=self.true_answer,
-
-            # The question asked
-            input=self.question_asked,
-        )
-
-        return int(eval_result['score'])
+        prompt = f"""
+        Compare the following response to the reference answer and score it based on accuracy:
+        
+        Question: {self.question_asked}
+        Reference Answer: {self.true_answer}
+        Response to Evaluate: {response}
+        
+        {self.CRITERIA['accuracy']}
+        
+        Provide only a numerical score (1, 3, 5, 7, or 10):
+        """
+        
+        try:
+            eval_response = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=10,
+                temperature=0
+            )
+            
+            score_text = eval_response.choices[0].message.content.strip()
+            return int(score_text)
+        except Exception as e:
+            print(f"Error evaluating response: {e}")
+            return 1
